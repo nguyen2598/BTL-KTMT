@@ -530,67 +530,6 @@ ten             DW      10
 
 
 
-GET_STRING      PROC    NEAR
-PUSH    AX     ; day gia tri ax vao stack
-PUSH    CX     ;             cx
-PUSH    DI     ;             di
-PUSH    DX     ;             dx
-
-MOV     CX, 0                   
-
-CMP     DX, 1                    
-JBE     empty_buffer            ; nhay neu dx < 1
-
-DEC     DX                      
-
-
-wait_for_key:
-
-MOV     AH, 0                  
-INT     16h
-
-CMP     AL, 0Dh                  
-JZ      exit_GET_STRING
-
-
-CMP     AL, 8                   
-JNE     add_to_buffer
-JCXZ    wait_for_key            
-DEC     CX                      ; giam cx di 1
-DEC     DI                      ; giam di di 1
-PUTC    8                       
-PUTC    ' '                     
-PUTC    8                       .
-JMP     wait_for_key            ; nhay toi wait_for_key
-
-add_to_buffer:
-
-        CMP     CX, DX          
-        JAE     wait_for_key    
-
-        MOV     [DI], AL       ; gan o nho [di] = gia tri al
-        INC     DI             ; tang di len 1
-        INC     CX             ; tang cx len 1
-        
-        ; Hien thi ki tu
-        MOV     AH, 0Eh  ; hien thi ki tu len man hinh
-        INT     10h
-
-JMP     wait_for_key    ; nhay toi wait_for_key
-;============================
-
-exit_GET_STRING:
-
-MOV     [DI], 0      ; gan o nho [di] = 0
-
-empty_buffer:
-
-POP     DX          ; lay ra gia tri dx
-POP     DI          ;                di
-POP     CX          ;                cx
-POP     AX          ;                ax
-RET                 ; return
-GET_STRING      ENDP
 
 
 
