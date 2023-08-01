@@ -154,9 +154,9 @@ int 21h
 ; wait for any key...  
 ;INT 16h / AH = 00h - nhan to hop tu ban phim
 ;tro ve:
-;AH = m„ quÈt BIOS.
-;AL = k˝ tu ASCII.
-;(neu co hien tuong tu ban phim, no se bi xoa khoi bo dem b‡n phim).
+;AH = m√£ qu√©t BIOS.
+;AL = k√Ω tu ASCII.
+;(neu co hien tuong tu ban phim, no se bi xoa khoi bo dem b√†n phim).
 mov ah, 0
 int 16h
 
@@ -170,7 +170,7 @@ ret  ; return back to os.
 
 giai_thua:    ; ham tinh giai thua
 mov ax, 1
-mov cx, 2
+mov cx, 1
 tinh_giai_thua:
 imul cx
 inc cx
