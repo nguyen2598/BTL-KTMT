@@ -317,11 +317,7 @@ SCAN_NUM        PROC    NEAR      ; nhap du toan hang tu ban phim
         MOV     CS:make_minus, 0
 
 ;------------------------------
-
-
-
-
-      
+    
 next_digit: ; ham nhap ki tu tiep theo
 
         ; get char from keyboard
